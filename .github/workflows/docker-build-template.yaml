@@ -37,7 +37,7 @@ jobs:
 
       - name: Parse build arguments
         id: args
-        run: echo "::set-output name=args::$(echo '${{ inputs.build_args }}' | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]')"
+        run: echo '${{ inputs.build_args }}' | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > $GITHUB_OUTPUT
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
