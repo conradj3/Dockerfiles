@@ -45,5 +45,4 @@ jobs:
           file: ${{ inputs.dockerfile }}
           push: true
           tags: ${{ inputs.docker_repo }}:latest
-          build-args: |
-            $(echo '${{ inputs.build_args }}' | jq -r 'to_entries | map("\(.key)=\(.value|tostring)") | join(",")')
+          build-args: ${{ inputs.build_args }}
