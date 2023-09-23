@@ -1,6 +1,6 @@
 # Overview
 
-Secure Nginx image `conradj3/nginx-distroless-unprivileged`.  This docker image is updated from `abdennour/nginx-distroless-unprivileged` and aims to maintain updates for personal use and general use of both the distroless and nginx versions.
+Secure Nginx image `conrad3/nginx-distroless-unprivileged`.  This docker image is updated from `abdennour/nginx-distroless-unprivileged` and aims to maintain updates for personal use and general use of both the distroless and nginx versions.
 
 - Running on port 8080 and does not accept ports below 1024
 - Running with non-root user
@@ -16,7 +16,7 @@ This image combines two images:
 ## Example 1 - Basic
 
 ```sh
-docker run --rm -p 8998:8080 --name secure-web -d conradj3/nginx-distroless-unprivileged
+docker run --rm -p 8998:8080 --name secure-web -d conrad3/nginx-distroless-unprivileged
 
 ```
 
@@ -45,7 +45,7 @@ docker logs -f secure-web
 docker run --rm -p 9988:8080 \
   -v ./assets:/usr/share/nginx/html:ro \
   --name example-2 -d \
-  conradj3/nginx-distroless-unprivileged:1.18
+  conrad3/nginx-distroless-unprivileged:1.18
 
 # where ./assets directory is on the host with some html files
 ```
@@ -59,7 +59,7 @@ WORKDIR /assets
 RUN echo "<h1>Hello my secure nginx<h1>" > /assets/index.html
 
 # secure image
-FROM conradj3/nginx-distroless-unprivileged as release
+FROM conrad3/nginx-distroless-unprivileged as release
 WORKDIR /usr/share/nginx/html
 COPY --from=web-assets  --chown=1001:0 /code/build/. .
 EXPOSE 8080
@@ -102,7 +102,7 @@ RUN npm run build
 # will generate web-assets in folder /code/build
 
 # stage - release ############
-FROM conradj3/nginx-distroless-unprivileged as release
+FROM conrad3/nginx-distroless-unprivileged as release
 # workdir is the same as root directive in the nginx custom config.
 WORKDIR /opt/app
 # copy custom nginx config from your host
