@@ -1,0 +1,25 @@
+name: Docker Build and Push
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  nginx-distroless-unprivledged:
+    uses: conradj3/Dockerfiles/.github/workflows/docker-build-template.yaml@main
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    with:
+      dockerfile: ./nginx-distroless-unprivledged/Dockerfile
+      docker_repo: conrad3/nginx-distroless-unprivledged
+      build_args: '{"NGINX_VERSION=":"1.25","TIME_ZONE":"America/New_York"}'
+
+  microsoft-azure-utility:
+    uses: conradj3/Dockerfiles/.github/workflows/docker-build-template.yaml@main
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    with:
+      dockerfile: ./micrsoft-azure-utility/Dockerfile
+      docker_repo: conrad3/microsoft-azure-utility
