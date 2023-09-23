@@ -40,7 +40,7 @@ jobs:
           context: .
           file: ./nginx-distroless-unprivledged/Dockerfile
           push: true
-          tags: latest
+          tags: conrad3/nginx-distroless-unprivledged:latest
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             NGINX_VERSION=1.25
