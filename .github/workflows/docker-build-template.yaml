@@ -37,7 +37,11 @@ jobs:
 
       - name: Parse build arguments
         id: args
-        run: echo '${{ inputs.build_args }}' | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > $GITHUB_OUTPUT
+        run: |
+          mkdir -p ${{ runner.temp }}/args
+          echo '${{ inputs.build_args }}' | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' | while read arg; do
+            echo $arg > ${{ runner.temp }}/args/$arg
+          done
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
@@ -46,4 +50,5 @@ jobs:
           file: ${{ inputs.dockerfile }}
           push: true
           tags: ${{ inputs.docker_repo }}:latest
-          build-args: ${{ steps.args.outputs.args }}
+          build-args: |
+            $(cat ${{ runner.temp }}/args/*)
