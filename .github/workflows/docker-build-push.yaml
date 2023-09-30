@@ -4,8 +4,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 0 * * *' # This schedule triggers the workflow every day at midnight UTC
-
+    - cron: "0 0 * * *" # This schedule triggers the workflow every day at midnight UTC
 
 jobs:
   nginx-distroless-unprivledged-deb10:
@@ -30,7 +29,7 @@ jobs:
     with:
       dockerfile: ./nginx-distroless-unprivledged/Dockerfile
       docker_repo: conrad3/nginx-distroless-unprivledged
-      docker_tags: debian11
+      docker_tag: debian11
       build_args: |
         NGINX_VERSION=1.25
         DISTROLESS_BASE=base-debian11
@@ -44,7 +43,7 @@ jobs:
     with:
       dockerfile: ./nginx-distroless-unprivledged/Dockerfile
       docker_repo: conrad3/nginx-distroless-unprivledged
-      docker_tags: debian12
+      docker_tag: debian12
       build_args: |
         NGINX_VERSION=1.25
         DISTROLESS_BASE=base-debian12
@@ -58,4 +57,4 @@ jobs:
     with:
       dockerfile: ./microsoft-azure-utility/Dockerfile
       docker_repo: conrad3/microsoft-azure-utility
-      docker_tags: ubuntu20.04
+      docker_tag: ubuntu20.04
