@@ -1,4 +1,5 @@
 ARG NGINX_VERSION
+ARG DISTROLESS_BASE
 
 FROM nginxinc/nginx-unprivileged:${NGINX_VERSION}-alpine AS base
 ARG TIME_ZONE
@@ -23,7 +24,7 @@ RUN mkdir -p /opt/var/cache/nginx && \
     cp /usr/share/zoneinfo/${TIME_ZONE:-ROC} /opt/etc/localtime
 
 # https://github.com/GoogleContainerTools/distroless
-FROM gcr.io/distroless/base-debian12 AS nginx-distroless-unprivileged
+FROM gcr.io/distroless/${DISTROLESS_BASE} AS nginx-distroless-unprivileged
 COPY --from=base /opt /
 EXPOSE 8080
 STOPSIGNAL SIGTERM

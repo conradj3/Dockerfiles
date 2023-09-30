@@ -14,6 +14,9 @@ on:
       docker_repo:
         required: true
         type: string
+      docker_tag:
+        required: true
+        type: string
       build_args:
         required: false
         type: string
@@ -44,5 +47,5 @@ jobs:
           context: .
           file: ${{ inputs.dockerfile }}
           push: true
-          tags: ${{ inputs.docker_repo }}:latest
+          tags: ${{ inputs.docker_repo }}:${{ inputs.docker_tag }}
           build-args: ${{ inputs.build_args }}

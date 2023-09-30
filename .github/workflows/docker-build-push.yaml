@@ -8,7 +8,7 @@ on:
 
 
 jobs:
-  nginx-distroless-unprivledged:
+  nginx-distroless-unprivledged-deb10:
     uses: conradj3/Dockerfiles/.github/workflows/docker-build-template.yaml@main
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -16,8 +16,38 @@ jobs:
     with:
       dockerfile: ./nginx-distroless-unprivledged/Dockerfile
       docker_repo: conrad3/nginx-distroless-unprivledged
+      docker_tag: debian10
       build_args: |
         NGINX_VERSION=1.25
+        DISTROLESS_BASE=base-debian10
+        TIME_ZONE=America/New_York
+
+  nginx-distroless-unprivledged-deb11:
+    uses: conradj3/Dockerfiles/.github/workflows/docker-build-template.yaml@main
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    with:
+      dockerfile: ./nginx-distroless-unprivledged/Dockerfile
+      docker_repo: conrad3/nginx-distroless-unprivledged
+      docker_tags: debian11
+      build_args: |
+        NGINX_VERSION=1.25
+        DISTROLESS_BASE=base-debian11
+        TIME_ZONE=America/New_York
+
+  nginx-distroless-unprivledged-deb12:
+    uses: conradj3/Dockerfiles/.github/workflows/docker-build-template.yaml@main
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    with:
+      dockerfile: ./nginx-distroless-unprivledged/Dockerfile
+      docker_repo: conrad3/nginx-distroless-unprivledged
+      docker_tags: debian12
+      build_args: |
+        NGINX_VERSION=1.25
+        DISTROLESS_BASE=base-debian12
         TIME_ZONE=America/New_York
 
   microsoft-azure-utility:
@@ -28,3 +58,4 @@ jobs:
     with:
       dockerfile: ./microsoft-azure-utility/Dockerfile
       docker_repo: conrad3/microsoft-azure-utility
+      docker_tags: ubuntu20.04
