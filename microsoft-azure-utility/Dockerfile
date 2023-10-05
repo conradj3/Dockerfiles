@@ -16,7 +16,7 @@ RUN apt-get update && \
 
 # CVE Patches
 # CVE-2023-43804 https://scout.docker.com/vulnerabilities/id/CVE-2023-43804?utm_source=hub&utm_medium=ExternalLink
-RUN python -m pip3 install urllib
+RUN pip3 install --upgrade urllib3
 
 # Install Azure CLI
 RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null && \
