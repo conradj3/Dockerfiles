@@ -7,16 +7,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install dependencies and tools
 RUN apt-get update && \
     apt-get install -y \
-    curl \
     apt-transport-https \
     lsb-release \
     gnupg \
     sudo && \
     rm -rf /var/lib/apt/lists/* 
-
-# CVE Patches
-# CVE-2023-43804 https://scout.docker.com/vulnerabilities/id/CVE-2023-43804?utm_source=hub&utm_medium=ExternalLink
-RUN pip3 install --upgrade urllib3
 
 # Install Azure CLI
 RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null && \
@@ -36,7 +31,21 @@ RUN type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y) &&\
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null && \
     apt update && \
     apt install gh -y
+# Download the Microsoft repository keys
+RUN wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
 
+# Register the Microsoft repository keys
+RUN dpkg -i packages-microsoft-prod.deb
+
+# Delete the the Microsoft repository keys file
+RUN rm packages-microsoft-prod.deb
+
+# Update the list of packages after we added packages.microsoft.com
+RUN sudo apt-get update
+
+###################################
+# Install PowerShell
+RUN apt-get install powershell -y 
 # Set working directory
 WORKDIR /root
 
