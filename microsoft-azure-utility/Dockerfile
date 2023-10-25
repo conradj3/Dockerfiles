@@ -15,13 +15,10 @@ RUN apt-get update && \
 
 # Install Azure CLI
 RUN mkdir -p /etc/apt/keyrings
-    curl -sLS https://packages.microsoft.com/keys/microsoft.asc |
-    gpg --dearmor |
-    sudo tee /etc/apt/keyrings/microsoft.gpg > /dev/null
+    curl -sLS https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/keyrings/microsoft.gpg > /dev/null
     chmod go+r /etc/apt/keyrings/microsoft.gpg
     AZ_DIST=$(lsb_release -cs)
-    echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ $AZ_DIST main" |
-    tee /etc/apt/sources.list.d/azure-cli.list
+    echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ $AZ_DIST main" | tee /etc/apt/sources.list.d/azure-cli.list
     
 RUN apt-get update
     apt-get install azure-cli
@@ -30,8 +27,8 @@ RUN apt-get update
 RUN az extension add --name azure-devops
 
 # Install GitHub CLI
-RUN type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y) &&\
-    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&\
+RUN type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y) && \
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg && \
     chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null && \
     apt update && \
