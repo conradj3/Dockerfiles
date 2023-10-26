@@ -23,12 +23,13 @@ RUN apt-get update && \
 RUN az extension add --name azure-devops
 
 # Install GitHub CLI
-RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg && \
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg && \
     chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" && \
     tee /etc/apt/sources.list.d/github-cli.list > /dev/null && \
     apt update && \
     apt install gh -y
+    
 # Download the Microsoft repository keys
 RUN wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
 
@@ -39,7 +40,7 @@ RUN dpkg -i packages-microsoft-prod.deb
 RUN rm packages-microsoft-prod.deb
 
 # Update the list of packages after we added packages.microsoft.com
-RUN sudo apt-get update
+RUN apt-get update
 
 ###################################
 # Install PowerShell
