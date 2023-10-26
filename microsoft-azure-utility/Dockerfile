@@ -16,7 +16,7 @@ RUN mkdir -p /etc/apt/keyrings && \
     AZ_DIST=$(lsb_release -cs) && \
     echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ $AZ_DIST main" | tee /etc/apt/sources.list.d/azure-cli.list
     
-RUN apt-get update &&
+RUN apt-get update && \
     apt-get install azure-cli
 
 # Install Azure DevOps CLI
