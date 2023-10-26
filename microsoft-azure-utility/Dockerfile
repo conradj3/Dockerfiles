@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies and tools
 RUN apt-get update && \
-    apt-get install -y apt-transport-https curl lsb-release gnupg \
+    apt-get install -y apt-transport-https curl lsb-release gnupg && \
     rm -rf /var/lib/apt/lists/* 
 
 # Install Azure CLI
