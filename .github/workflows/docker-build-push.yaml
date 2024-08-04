@@ -13,6 +13,7 @@ jobs:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
     with:
+      context: ./nginx-distroless-unprivledged
       dockerfile: ./nginx-distroless-unprivledged/Dockerfile
       docker_repo: conrad3/nginx-distroless-unprivledged
       docker_tag: debian10
@@ -27,6 +28,7 @@ jobs:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
     with:
+      context: ./nginx-distroless-unprivledged
       dockerfile: ./nginx-distroless-unprivledged/Dockerfile
       docker_repo: conrad3/nginx-distroless-unprivledged
       docker_tag: debian11
@@ -41,6 +43,7 @@ jobs:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
     with:
+      context: ./nginx-distroless-unprivledged
       dockerfile: ./nginx-distroless-unprivledged/Dockerfile
       docker_repo: conrad3/nginx-distroless-unprivledged
       docker_tag: debian12
@@ -55,6 +58,7 @@ jobs:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
     with:
+      context: ./microsoft-azure-utility
       dockerfile: ./microsoft-azure-utility/Dockerfile
       docker_repo: conrad3/microsoft-azure-utility
       docker_tag: ubuntu20.04
@@ -65,6 +69,7 @@ jobs:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
     with:
+      context: ./tls-warrior
       dockerfile: ./tls-warrior/Dockerfile
       docker_repo: conrad3/tls-warrior
       docker_tag: latest
