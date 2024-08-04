@@ -52,17 +52,6 @@ jobs:
         DISTROLESS_BASE=base-debian12
         TIME_ZONE=America/New_York
 
-  microsoft-azure-utility:
-    uses: conradj3/Dockerfiles/.github/workflows/docker-build-template.yaml@main
-    secrets:
-      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-    with:
-      context: ./microsoft-azure-utility
-      dockerfile: ./microsoft-azure-utility/Dockerfile
-      docker_repo: conrad3/microsoft-azure-utility
-      docker_tag: ubuntu20.04
-
   tls-warrior:
     uses: conradj3/Dockerfiles/.github/workflows/docker-build-template.yaml@main
     secrets:
