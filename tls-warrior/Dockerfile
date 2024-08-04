@@ -1,5 +1,5 @@
 # Use PowerShell Jammy-Jellyfish image
-FROM mcr.microsoft.com/powershell:7.4-ubuntu-20.04
+FROM mcr.microsoft.com/powershell:7.4-ubuntu-22.04
 
 
 # Copy the JSON config and scripts into the container
