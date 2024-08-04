@@ -4,6 +4,8 @@ A utility container with preloaded Modules for troubleshooting TLS and Network i
 
 ## Lib Packages
 
+## Vital Packages
+
 1. **curl**: A command-line tool for transferring data using various protocols (HTTP, FTP, etc.). It's commonly used for downloading files or interacting with APIs.
 1. **tar**: A tool for creating and extracting archives. It supports various compression methods like gzip and bzip2.
 1. **unzip**: A utility for extracting files from ZIP archives.
