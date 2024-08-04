@@ -58,3 +58,13 @@ jobs:
       dockerfile: ./microsoft-azure-utility/Dockerfile
       docker_repo: conrad3/microsoft-azure-utility
       docker_tag: ubuntu20.04
+
+  tls-warrior:
+    uses: conradj3/Dockerfiles/.github/workflows/docker-build-template.yaml@main
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    with:
+      dockerfile: ./tls-warrior/Dockerfile
+      docker_repo: conrad3/tls-warrior
+      docker_tag: latest
