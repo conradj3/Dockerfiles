@@ -18,6 +18,7 @@ RUN apt-get update \
 
 # Set dialog for frontend
 ENV DEBIAN_FRONTEND=dialog
+USER 1001
 
 # Set entrypoint
 ENTRYPOINT [ "pwsh" ]
