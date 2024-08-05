@@ -36,3 +36,31 @@ A utility container with preloaded Modules for troubleshooting TLS and Network i
 1. **telnet**: A command-line tool for interacting with remote systems using the Telnet protocol, often used for debugging and testing network services.
 1. **time**: A command used to measure the duration of execution of a program or command.
 1. **zip**: A utility for creating ZIP archives, which compresses files into a single archive for easier distribution and storage.
+
+## Powershell Packages
+
+### Azure Modules
+
+The following Azure module is required:
+
+1. **az**: Installs 11.5.0 of the entirety of Az.* of Powershell Modules
+
+### PowerShell Modules
+
+The following PowerShell modules are required:
+
+1. **Microsoft.Graph**: The Microsoft Graph PowerShell SDK is a collection of modules that contain cmdlets for calling Microsoft Graph. Microsoft Graph is the gateway to data and intelligence in Microsoft 365.
+
+1. **Pester**: Pester is a testing framework for PowerShell, used for writing and running tests to ensure your PowerShell code performs as expected.
+
+1. **PSScriptAnalyzer**: PSScriptAnalyzer is a static code checker for PowerShell modules and scripts, providing best practices and rule-based analysis to improve script quality.
+
+1. **PSTCPIp**: The PSTCPIp module provides cmdlets for TCP/IP related operations, allowing for network-related scripting and automation tasks.
+
+1. **PSGraphQL**: PSGraphQL is a PowerShell module for interacting with GraphQL APIs, enabling the execution of queries and mutations against GraphQL endpoints.
+
+1. **PSJsonWebToken**: PSJsonWebToken provides cmdlets for creating and validating JSON Web Tokens (JWT), often used for authentication and secure information exchange.
+
+1. **PowerShellGet**: PowerShellGet is a module with cmdlets for discovering, installing, updating, and publishing PowerShell modules and scripts.
+
+1. **PSReadLine**: PSReadLine enhances the PowerShell command-line editing experience with features like syntax highlighting, multi-line editing, and customizable key bindings.
