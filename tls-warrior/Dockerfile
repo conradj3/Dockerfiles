@@ -17,8 +17,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Create user operator with UID 1001 and grant sudo privileges
-RUN useradd -u 1001 -m -s /bin/bash operator \
-    && echo 'operator ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN useradd -u 1001 -m -s /bin/bash operator
 
 # Set the non-interactive frontend
 ENV DEBIAN_FRONTEND=dialog
