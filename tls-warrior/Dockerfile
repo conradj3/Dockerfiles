@@ -10,15 +10,21 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install Libs and Powershell Modules
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends jq \
+    && apt-get install -y --no-install-recommends jq sudo \
     && jq -r '.apt.vital_packages + .apt.common_packages + .apt.cmd_packages | .[]' /tmp/config.json | xargs apt-get install -y --no-install-recommends \
     && pwsh -File /tmp/scripts/Install-RequiredModules.ps1 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Set dialog for frontend
+# Create user operator with UID 1001 and grant sudo privileges
+RUN useradd -u 1001 -m -s /bin/bash operator \
+    && echo 'operator ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Set the non-interactive frontend
 ENV DEBIAN_FRONTEND=dialog
-USER 1001
+
+# Switch to user operator
+USER operator
 
 # Set entrypoint
 ENTRYPOINT [ "pwsh" ]
